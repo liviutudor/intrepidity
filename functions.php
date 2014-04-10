@@ -44,6 +44,12 @@ $options = array (
 			"default" => "no",
             "type" => "login"),
 	
+	array(  "name" => "Show Default Content on Empty Footer",
+			"desc" => "Would you like to display a default content when the footer sidebars are empty?",
+            "id" => $shortname."_empty_sidebars",
+			"default" => "yes",
+            "type" => "empty_sidebars"),
+	
 	array(  "name" => "Socialize Icons",
 			"desc" => "Enter Links to Your Twitter, Facebook, and RSS feeds.<br />If you want to remove the icon, clear the field and save this page",
             "type" => "socialize_icons"),
@@ -365,6 +371,7 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 							<?php if(stristr($_GET['page'],'tbf-features.php')) { ?>
 									<li>Font Size: <strong><?php if(get_option($shortname.'_font_size') == "11px") { echo "11px"; } else { echo ucwords(get_option($shortname.'_font_size')); } ?></strong></li>
 									<li>Search Bar: <strong><?php if(get_option($shortname.'_logo_location') == "middle") { echo "No"; } else { echo ucwords(get_option($shortname.'_search_header')); } ?></strong></li>
+									<li>Show Default Content on Empty Footer: <strong><?php if(get_option($shortname.'_empty_sidebars') == "middle") { echo "No"; } else { echo ucwords(get_option($shortname.'_empty_sidebars')); } ?></strong></li>
 									<li>Admin Bar: <strong><?php if(get_option($shortname.'_user_login') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_user_login')); } ?></strong></li>
 							<?php } ?>
 							<?php if(stristr($_GET['page'],'tbf-homepage.php')) { ?>
@@ -626,6 +633,21 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 					</div>
 					<?php break;
 	
+					case "empty_sidebars":
+					?>
+					<div id="emptysidebarsdiv" class="stuffbox">
+						<h3><label for="link_url"><?php echo $value['name']; ?></label> : <?php echo $value['id'] . " : " . get_option($value['id']); ?></h3>
+						<div class="inside">
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"
+										<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Yes</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"
+										<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<p><small><?php echo $value['desc']; ?></small></p>
+						</div>
+					</div>
+					<?php break;
+
 					case "socialize_icons":
 					?>
 					<div id="socializediv" class="stuffbox">
