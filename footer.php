@@ -41,6 +41,12 @@
             <?php if(get_option('tbf1_icon_twitter') || isset($_GET['preview'])):?>
 				<li id="icon-twitter"><a href="<?php echo (get_option('tbf1_icon_twitter')) ? get_option('tbf1_icon_twitter') : '#'?>" rel="nofollow" target="_blank">twitter</a></li>
             <?php endif;?>
+            <?php if(get_option('tbf1_icon_youtube') || isset($_GET['preview'])):?>
+                <li id="icon-youtube"><a href="<?php echo (get_option('tbf1_icon_youtube')) ? get_option('tbf1_icon_youtube') : '#'?>" rel="nofollow" target="_blank">youtube</a></li>
+            <?php endif;?>
+            <?php if(get_option('tbf1_icon_linkedin') || isset($_GET['preview'])):?>
+                <li id="icon-linkedin"><a href="<?php echo (get_option('tbf1_icon_linkedin')) ? get_option('tbf1_icon_linkedin') : '#'?>" rel="nofollow" target="_blank">linkedin</a></li>
+            <?php endif;?>
 		</ul>
 		
       <div id="footer" <?php echo (get_option('tbf1_footer_image_file')) ? 'style="background:url('.get_option('tbf1_footer_image_file'). ') no-repeat"' : ''?>>
