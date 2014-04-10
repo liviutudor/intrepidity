@@ -11,7 +11,9 @@
     <div class="posts">
     <h2><a href="<?php the_permalink() ?>" title="Click to read <?php the_title(); ?>"><?php the_title(); ?></a></h2>
     <div class="meta">
-				<span class="tagmeta"><?php _e('Published on')?> <?php the_time(get_option('date_format')) ?> <?php _e('By')?> <span class="usr-meta"><?php the_author() ?></span></span>
+				<span class="tagmeta"><?php _e('Published on')?> <?php the_time(get_option('date_format')) ?> 
+					<?php if( get_option("tbf1_show_author") == "yes" ) { _e('By'); ?> <span class="usr-meta"><?php the_author();?></span><?php } ?>
+				</span>
 			</div>
 	<?php the_excerpt(); ?>
     </div>

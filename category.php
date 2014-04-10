@@ -10,7 +10,12 @@
             <div class="page-content">
                 <h3><a href="<?php the_permalink() ?>" title="Click to read <?php the_title(); ?>"><?php the_title(); ?></a></h3>
                 <div class="meta">
-                    <?php _e("Posted by"); ?> <span class="usr-meta"><?php the_author_posts_link(); ?></span> <?php _e("on"); ?> <?php the_time(get_option('date_format')); ?> <?php _e("at"); ?> <?php the_time('g:i a'); ?> <span class="editpost"><?php edit_post_link('Edit'); ?></span>
+                    <?php _e("Posted"); ?> 
+                    <?php if( get_option("tbf1_show_author") == "yes" ) {
+                        _e("by"); ?> <span class="usr-meta"><?php the_author_posts_link(); ?></span> 
+                    <?php } ?> 
+                    <?php _e("on"); ?> 
+                    <?php the_time(get_option('date_format')); ?> <?php _e("at"); ?> <?php the_time('g:i a'); ?> <span class="editpost"><?php edit_post_link('Edit'); ?></span>
                 </div>
                 
                 <?php getImage('1'); ?>    
