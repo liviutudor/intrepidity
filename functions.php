@@ -54,6 +54,8 @@ $options = array (
 			"default" => ""),
 	array(  "id" => $shortname."_icon_youtube",
 			"default" => ""),
+	array(  "id" => $shortname."_icon_linkedin",
+			"default" => ""),
 	array(  "id" => $shortname."_icon_rss",
 			"default" => ''),
 	
@@ -642,6 +644,10 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
                                     <tr valign="top">
 										<th scope="row"><label for="<?php echo $shortname?>_icon_youtube">YouTube URL:</label></th>
 										<td><input id="<?php echo $shortname?>_icon_youtube" class="regular-text" type="text" value="<?php echo get_option($shortname.'_icon_youtube'); ?>" name="<?php echo $shortname?>_icon_youtube"/><br /><span class="description">Eg. http://www.youtube.com/user/xxxxxx </span></td>
+									</tr>
+                                    <tr valign="top">
+										<th scope="row"><label for="<?php echo $shortname?>_icon_linkedin">LinkedIn URL:</label></th>
+										<td><input id="<?php echo $shortname?>_icon_linkedin" class="regular-text" type="text" value="<?php echo get_option($shortname.'_icon_linkedin'); ?>" name="<?php echo $shortname?>_icon_linkedin"/><br /><span class="description">Eg. http://www.linkedin.com/in/xxxxxx </span></td>
 									</tr>
 									<tr valign="top">
 										<th scope="row"><label for="<?php echo $shortname?>_icon_rss">RSS feed URL:</label></th>
