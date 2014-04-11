@@ -19,6 +19,14 @@ $options = array (
             "id" => $shortname."_logo_header",
 			"default" => "no",
             "type" => "logo"),
+
+	array(  "name" => "Heading Style",
+			"desc" => "Change the style of the heading",
+            "type" => "heading_style"),
+	array(  "id" => $shortname."_h1_color",
+			"default" => ""),
+	array(  "id" => $shortname."_h2_color",
+			"default" => ""),
 			
 	array(  "name" => "Logo or Blog Name Location",
 			"desc" => "Where do you want your Logo or Blog Name located?",
@@ -347,8 +355,10 @@ function mytheme_admin() {
 #socializediv .form-table th {width:124px; padding: 0; line-height:22px }
 #socializediv .form-table {clear:inherit }
 #socializediv .form-table td {padding:0 10px } 
-#background_color {padding-left: 35px; background: url(<?php bloginfo('template_url'); ?>/images/admin/back-palette.png) no-repeat}
+#background_color, #<?php echo $shortname; ?>_h1_color, #<?php echo $shortname; ?>_h2_color {padding-left: 35px; background: url(<?php bloginfo('template_url'); ?>/images/admin/back-palette.png) no-repeat}
 </style>
+
+<div id="colorPickerDiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"> </div>
 
 <div class="wrap">
 <h2><?php echo $themename; ?> Settings
@@ -384,6 +394,8 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 							<?php if(stristr($_GET['page'],'tbf-design.php')) { ?>
 									<li>Skin Color: <strong><?php echo ucwords(get_option($shortname.'_skin_color')); ?></strong></li>
 									<li>Header Logo: <strong><?php echo ucwords(get_option($shortname.'_logo_header')); ?></strong></li>
+									<li>Heading Style - H1 Color: <strong><?php echo ucwords(get_option($shortname.'_h1_color')); ?></strong></li>
+									<li>Heading Style - H2 Color: <strong><?php echo ucwords(get_option($shortname.'_h2_color')); ?></strong></li>
 									<li><?php if (get_option($shortname.'_logo_header') == "yes") { echo "Logo"; } else { echo "Blog Name"; } ?> Location: <strong><?php echo ucwords(get_option($shortname.'_logo_location')); ?></strong></li>
 							<?php } ?>
 							<?php if(stristr($_GET['page'],'tbf-features.php')) { ?>
@@ -478,6 +490,24 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 					<?php
 					break;
 					
+					case "heading_style":
+						$heading_h1_color = get_option($shortname.'_h1_color');
+						$heading_h2_color = get_option($shortname.'_h2_color');
+					?>
+						<div id="heading_stylediv" class="stuffbox">
+						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
+						<div class="inside">
+							<label for="<?php echo $shortname?>_h1_color">H1 Color</label>
+							<input name="<?php echo $shortname?>_h1_color" id="<?php echo $shortname?>_h1_color" type="text" size="8" value="<?php echo htmlentities($heading_h1_color);?>"/>
+							<span id="<?php echo $shortname?>_h1_color-sample" style="background-color:<?php echo $heading_h1_color;?>;padding:0 10px;">&nbsp;</span><br>
+							<label for="<?php echo $shortname?>_h2_color">H2 Color</label>
+							<input name="<?php echo $shortname?>_h2_color" id="<?php echo $shortname?>_h2_color" type="text" size="8" value="<?php echo htmlentities($heading_h2_color);?>"/>
+							<span id="<?php echo $shortname?>_h2_color-sample" style="background-color:<?php echo $heading_h2_color;?>;padding:0 10px;">&nbsp;</span>
+						</div>
+					</div>
+					<?php
+					break;
+
 					case "logo":
 					?>
 					<div id="logodiv" class="stuffbox">
@@ -551,9 +581,9 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 						<input type="radio" size="8" name="<?php echo $shortname;?>_background_repeat" <?php echo ($bgr == 'repeat'    ? 'checked="checked"' : '');?> value="repeat"    id="repeat" ><label for="repeat">Tile</label> &nbsp;
 						<input type="radio" size="8" name="<?php echo $shortname;?>_background_repeat" <?php echo ($bgr == 'no-repeat' ? 'checked="checked"' : '');?> value="no-repeat" id="no-repeat" ><label for="no-repeat">No Repeat</label>
 						<br>
-						Background Color: <input type="text" size="8" name="<?php echo $shortname;?>_background_color" id="background_color" value="<?php echo htmlentities($bgc = get_option($shortname.'_background_color'));?>"> <span id="background-color-sample" style="background-color:<?php echo $bgc;?>;padding:0 10px;">&nbsp;</span><br>
-						<div id="colorPickerDiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"> </div>
-						
+						Background Color: <input type="text" size="8" name="<?php echo $shortname;?>_background_color" id="background_color" value="<?php echo htmlentities($bgc = get_option($shortname.'_background_color'));?>"> <span id="background_color-sample" style="background-color:<?php echo $bgc;?>;padding:0 10px;">&nbsp;</span><br>
+<!-- 						<div id="colorPickerDiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"> </div>
+ -->						
 						<?php if ($imageURL):?>
 							<img src="<?php echo $imageURL;?>" style="max-height:50px;max-width:600px;min-width:20px" />
 						<?php endif;?>
@@ -595,18 +625,39 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 	<script type="text/javascript">
 	/* <![CDATA[ */
 	var farbtastic;
+	var color_div_id='';
 
 	jQuery(function($) {
 		$('#background_color').click(function() {
-			$('#colorPickerDiv').show();
+			show_color_choice("#background_color");
 		});
+		$('#<?php echo $shortname; ?>_h1_color').click(function() {
+			show_color_choice("#<?php echo $shortname; ?>_h1_color");
+		});
+		$('#<?php echo $shortname; ?>_h2_color').click(function() {
+			show_color_choice("#<?php echo $shortname; ?>_h2_color");
+		});
+
 		farbtastic = jQuery.farbtastic('#colorPickerDiv', function(color) { pickColor(color); });
+		color_div_id='#background-color';
 		pickColor('<?php echo $bgc ?>');
-		
+		color_div_id='#<?php echo $shortname; ?>_h1_color';
+		pickColor('<?php echo $heading_h1_color ?>');
+		color_div_id='#<?php echo $shortname; ?>_h2_color';
+		pickColor('<?php echo $heading_h2_color ?>');
+		color_div_id="";
 	});
+
+	function show_color_choice(srcDiv) {
+		color_div_id = srcDiv;
+		var pos = jQuery(srcDiv).offset();
+		jQuery('#colorPickerDiv').css('left', parseInt(pos.left) + 'px');
+		jQuery('#colorPickerDiv').css('top', parseInt(pos.top) + 'px');
+		jQuery('#colorPickerDiv').show();
+	}
 	function pickColor(color) {
-		jQuery('#background-color-sample').css('background-color', color);
-		jQuery('#background_color').val(color);
+		jQuery(color_div_id + '-sample').css('background-color', color);
+		jQuery(color_div_id).val(color);
 		farbtastic.setColor(color);
 	}
 	jQuery(document).mousedown(function() {
