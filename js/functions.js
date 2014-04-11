@@ -24,9 +24,9 @@ function printCopyrightYears(startYear) {
 	var d=new Date(); 
 	yr=d.getFullYear();
 	if (yr!=startYear) {
-		document.write(startYear+"-"+yr);
+		document.write(startYear + " - " + yr + " ");
 	} else {
-		document.write(startYear);
+		document.write(startYear + " ");
 	}	
 }
 
