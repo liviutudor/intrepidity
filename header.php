@@ -55,9 +55,28 @@ foreach($skin_folders as $key=>$value) {
 			<?php if (get_option('tbf1_logo_header') == "yes" && get_option('tbf1_logo')) { ?>
                     <a href="<?php bloginfo('url'); ?>/"><img src="<?php echo get_option('tbf1_logo'); ?>" title="<?php bloginfo('name'); ?> - 
 					<?php bloginfo('description'); ?>" alt="<?php bloginfo('name'); ?> - <?php bloginfo('description'); ?>" /></a>
-            <?php } else { //If no logo, show the blog title and tagline by default ?>
-            	<a href="<?php bloginfo('url'); ?>" id="blogname" style="background:none;text-indent:0;width:auto;<?php if( get_option("tbf1_h2_color") ) { echo "color:" . get_option("tbf1_h2_color") . ";" ; } ?>">
-                    <span class="blod" <?php if( get_option("tbf1_h1_color") ) { echo "style='color:" . get_option("tbf1_h1_color") . ";'" ; } ?> ><?php bloginfo('name'); ?></span><br />
+            <?php } else { //If no logo, show the blog title and tagline by default 
+                $h2_style="";
+                if( get_option("tbf1_h2_color") ) { 
+                    $h2_style .= "color:" . get_option("tbf1_h2_color") . ";" ; 
+                } 
+                if( get_option("tbf1_h2_font") ) { 
+                    $h2_style .= "font-family:" . get_option("tbf1_h2_font") . ";" ; 
+                } 
+                ?>
+            	<a href="<?php bloginfo('url'); ?>" id="blogname" style="background:none;text-indent:0;width:auto;<?php if( $h2_style != "" ) { echo $h2_style; } ?>">
+                    <span class="blod" <?php 
+                    $h1_style="";
+                    if( get_option("tbf1_h1_color") ) { 
+                        $h1_style .= "color:" . get_option("tbf1_h1_color") . ";" ; 
+                    } 
+                    if( get_option("tbf1_h1_font") ) { 
+                        $h1_style .= "font-family:" . get_option("tbf1_h1_font") . ";" ; 
+                    } 
+                    if( $h1_style != "" ) {
+                        echo "style='" . $h1_style ."'";
+                    }
+                    ?> ><?php bloginfo('name'); ?></span><br />
                     <?php bloginfo('description'); ?></a>
             <?php } ?>
           </h1>

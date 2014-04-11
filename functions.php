@@ -25,7 +25,11 @@ $options = array (
             "type" => "heading_style"),
 	array(  "id" => $shortname."_h1_color",
 			"default" => ""),
+	array(  "id" => $shortname."_h1_font",
+			"default" => ""),
 	array(  "id" => $shortname."_h2_color",
+			"default" => ""),
+	array(  "id" => $shortname."_h2_font",
 			"default" => ""),
 			
 	array(  "name" => "Logo or Blog Name Location",
@@ -395,7 +399,9 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 									<li>Skin Color: <strong><?php echo ucwords(get_option($shortname.'_skin_color')); ?></strong></li>
 									<li>Header Logo: <strong><?php echo ucwords(get_option($shortname.'_logo_header')); ?></strong></li>
 									<li>Heading Style - H1 Color: <strong><?php echo ucwords(get_option($shortname.'_h1_color')); ?></strong></li>
+									<li>Heading Style - H1 Font: <strong><?php echo ucwords(get_option($shortname.'_h1_font')); ?></strong></li>
 									<li>Heading Style - H2 Color: <strong><?php echo ucwords(get_option($shortname.'_h2_color')); ?></strong></li>
+									<li>Heading Style - H2 Font: <strong><?php echo ucwords(get_option($shortname.'_h2_font')); ?></strong></li>
 									<li><?php if (get_option($shortname.'_logo_header') == "yes") { echo "Logo"; } else { echo "Blog Name"; } ?> Location: <strong><?php echo ucwords(get_option($shortname.'_logo_location')); ?></strong></li>
 							<?php } ?>
 							<?php if(stristr($_GET['page'],'tbf-features.php')) { ?>
@@ -492,17 +498,25 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 					
 					case "heading_style":
 						$heading_h1_color = get_option($shortname.'_h1_color');
+						$heading_h1_font = get_option($shortname.'_h1_font');
 						$heading_h2_color = get_option($shortname.'_h2_color');
+						$heading_h2_font = get_option($shortname.'_h2_font');
 					?>
 						<div id="heading_stylediv" class="stuffbox">
 						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
 						<div class="inside">
 							<label for="<?php echo $shortname?>_h1_color">H1 Color</label>
 							<input name="<?php echo $shortname?>_h1_color" id="<?php echo $shortname?>_h1_color" type="text" size="8" value="<?php echo htmlentities($heading_h1_color);?>"/>
-							<span id="<?php echo $shortname?>_h1_color-sample" style="background-color:<?php echo $heading_h1_color;?>;padding:0 10px;">&nbsp;</span><br>
+							<span id="<?php echo $shortname?>_h1_color-sample" style="background-color:<?php echo $heading_h1_color;?>;padding:0 10px;">&nbsp;</span><br/>
+							<label for="<?php echo $shortname?>_h1_font">H1 Font</label>
+							<input name="<?php echo $shortname?>_h1_font" id="<?php echo $shortname?>_h1_font" type="text" size="32" value="<?php echo htmlentities($heading_h1_font);?>"/>
+							<br/>
+
 							<label for="<?php echo $shortname?>_h2_color">H2 Color</label>
 							<input name="<?php echo $shortname?>_h2_color" id="<?php echo $shortname?>_h2_color" type="text" size="8" value="<?php echo htmlentities($heading_h2_color);?>"/>
-							<span id="<?php echo $shortname?>_h2_color-sample" style="background-color:<?php echo $heading_h2_color;?>;padding:0 10px;">&nbsp;</span>
+							<span id="<?php echo $shortname?>_h2_color-sample" style="background-color:<?php echo $heading_h2_color;?>;padding:0 10px;">&nbsp;</span><br/>
+							<label for="<?php echo $shortname?>_h2_font">H2 Font</label>
+							<input name="<?php echo $shortname?>_h2_font" id="<?php echo $shortname?>_h2_font" type="text" size="32" value="<?php echo htmlentities($heading_h2_font);?>"/>
 						</div>
 					</div>
 					<?php
