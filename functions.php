@@ -62,6 +62,12 @@ $options = array (
 			"default" => "yes",
             "type" => "show_tags"),
 	
+	array(  "name" => "Show Categories",
+			"desc" => "Would you like to display the categories for each post?",
+            "id" => $shortname."_show_categories",
+			"default" => "yes",
+            "type" => "show_categories"),
+	
 	array(  "name" => "Socialize Icons",
 			"desc" => "Enter Links to Your Twitter, Facebook, and RSS feeds.<br />If you want to remove the icon, clear the field and save this page",
             "type" => "socialize_icons"),
@@ -386,6 +392,7 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 									<li>Show Default Content on Empty Footer: <strong><?php if(get_option($shortname.'_empty_sidebars') == "yes") { echo "No"; } else { echo ucwords(get_option($shortname.'_empty_sidebars')); } ?></strong></li>
 									<li>Show Author: <strong><?php if(get_option($shortname.'_show_author') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_show_author')); } ?></strong></li>
 									<li>Show Tags: <strong><?php if(get_option($shortname.'_show_tags') == "fp_only") { echo "Front Page Only"; } elseif (get_option($shortname.'_show_tags') == "post_only") { echo "Single Post/Page Only"; } else { echo ucwords(get_option($shortname.'_show_tags')); } ?></strong></li>
+									<li>Show Categories: <strong><?php if(get_option($shortname.'_show_categories') == "fp_only") { echo "Front Page Only"; } elseif (get_option($shortname.'_show_categories') == "post_only") { echo "Single Post/Page Only"; } else { echo ucwords(get_option($shortname.'_show_categories')); } ?></strong></li>
 									<li>Copyrigt Year: <strong><?php echo get_option($shortname.'_copy_year'); ?></strong></li>
 									<li>Admin Bar: <strong><?php if(get_option($shortname.'_user_login') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_user_login')); } ?></strong></li>
 							<?php } ?>
@@ -681,6 +688,27 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 					case "show_tags":
 					?>
 					<div id="showtagsdiv" class="stuffbox">
+						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
+						<div class="inside">
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"
+										<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Always</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="fp_only"
+										<?php if(get_option($value['id']) == "fp_only") { echo " checked"; } ?> />&nbsp;Front Page Only</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="post_only"
+										<?php if(get_option($value['id']) == "post_only") { echo " checked"; } ?> />&nbsp;Single Post/Page Page Only</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"
+										<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<p><small><?php echo $value['desc']; ?></small></p>
+						</div>
+					</div>
+					<?php break;
+
+					case "show_categories":
+					?>
+					<div id="showcategoriesdiv" class="stuffbox">
 						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
 						<div class="inside">
 							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"

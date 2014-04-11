@@ -23,11 +23,13 @@ $template_url = get_bloginfo('template_url');
             <?php if(get_option("tbf1_show_tags") == "yes" || ((get_option("tbf1_show_tags")=="fp_only") && is_home()) ) { ?>
                 <span class="tag-icon"><?php the_tags('<span class="tag-meta">Tags: ', ', ', '</span><br />'); ?></span><br/> 
             <?php } ?>
-            <?php _e('Posted in')?> <span class="categories"><?php the_category(' ') ?></span> 
+            <?php if(get_option("tbf1_show_categories") == "yes" || ((get_option("tbf1_show_categories")=="fp_only") && is_home())) { 
+                _e('Posted in')?> <span class="categories"><?php the_category(' ') ?></span> 
+            <?php } ?>
             <?php if( get_option("tbf1_show_author") == "yes" ) {
                 _e('by'); ?> <span class="usr-meta"><?php the_author() ?></span>
             <?php } ?>
-        .
+        
         <span class="comment-icon"><?php comments_popup_link('No Comments', '1 Comment', '% Comments')?></span>
         <?php if (isset($options['tags'])) : ?><span class="tags"><?php the_tags('', ', ', ''); ?></span><?php endif; ?></div>
     </div>

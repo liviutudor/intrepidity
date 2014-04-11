@@ -45,7 +45,10 @@
 					</small>
 				</p>
 
-			<p class="postmetacat"><?php _e('Posted in')?> <span class="categories"><?php the_category(' ') ?></span> 
+			<p class="postmetacat">
+				<?php if(get_option("tbf1_show_categories") == "yes" || (get_option("tbf1_show_categories") == "post_only")) { ?>
+					<?php _e('Posted in')?> <span class="categories"><?php the_category(' ') ?></span> 
+				<?php } ?>
 				<?php if( get_option("tbf1_show_author") == "yes" ) { _e('By'); ?> <span class="usr-meta"><?php the_author();?></span><?php } ?> 
 				<span class="comment-icon"><?php comments_popup_link('No Comments Yet', '1 Comment', '% Comments')?></span>
 			</p>

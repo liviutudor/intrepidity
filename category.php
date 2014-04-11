@@ -15,7 +15,7 @@
                         _e("by"); ?> <span class="usr-meta"><?php the_author_posts_link(); ?></span> 
                     <?php } ?> 
                     <?php _e("on"); ?> 
-                    <?php the_time(get_option('date_format')); ?> <?php _e("at"); ?> <?php the_time('g:i a'); ?> <span class="editpost"><?php edit_post_link('Edit'); ?></span>
+                    <?php the_time(get_option('date_format')); ?> <?php _e("at"); ?> <?php the_time('g:i a'); ?> <?php edit_post_link('Edit', '<span class="editpost">', '</span>'); ?>
                     <?php if(get_option("tbf1_show_tags") == "yes") { ?>
                         <br/><span class="tag-icon"><?php the_tags('Tags: ', ', ', '<br />'); ?></span><br/> 
                     <?php } ?>

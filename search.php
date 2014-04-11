@@ -13,6 +13,9 @@
                 <?php if(get_option("tbf1_show_tags") == "yes") { ?>
                     <br/><span class="tag-icon"><?php the_tags('Tags: ', ', ', '<br />'); ?></span>
                 <?php } ?>
+                <?php if(get_option("tbf1_show_categories") == "yes") { ?>
+                    <?php _e('Posted in')?> <span class="categories"><?php the_category(', ') ?></span> 
+                <?php } ?>
             </div>
             <?php the_excerpt(); ?>
             </div>
