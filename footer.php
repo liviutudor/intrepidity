@@ -88,12 +88,10 @@
 			printCopyrightYears(startCopyrightYear)
 			/* ]]> */
             </script>
-            <?php echo bloginfo('site_name')?></span><span id="footer-tag"> | &nbsp; <a href="http://www.topblogformula.com/wordpress-business-themes/intrepidity" target="_blank">intrepidity</a> Theme <?php _e('by')?> <a href="http://www.topblogformula.com/" target="_blank">Top Blog Formula</a> on <a href="http://www.wordpress.org" target="_blank">WordPress</a></span> | &nbsp; 
-			<?php if(is_user_logged_in()):?>
-				<a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php echo _e('Log Out') ?>"><?php echo _e('Log Out'); ?></a>
-			<?php else:?>
-				<a href="<?php echo bloginfo('url')?>/wp-login.php"><?php _e('Log In'); ?></a>
-			<?php endif;?>
+            <?php echo bloginfo('site_name')?></span>
+            <?php if( get_option("tbf1_theme_by") == "yes" ) { ?>
+            <span id="footer-tag"> | &nbsp; <a href="http://www.topblogformula.com/wordpress-business-themes/intrepidity" target="_blank">intrepidity</a> Theme <?php _e('by')?> <a href="http://www.topblogformula.com/" target="_blank">Top Blog Formula</a> on <a href="http://www.wordpress.org" target="_blank">WordPress</a></span>
+            <?php } ?>
 		  </span>
 
       </div>

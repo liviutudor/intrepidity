@@ -55,6 +55,12 @@ $options = array (
             "id" => $shortname."_user_login",
 			"default" => "no",
             "type" => "login"),
+
+	array(  "name" => "Show 'Theme by...'",
+			"desc" => "Would you like to display a 'intrepidity Theme by Top Blog Formula' in the footer?",
+            "id" => $shortname."_theme_by",
+			"default" => "yes",
+            "type" => "theme-by"),
 	
 	array(  "name" => "Show Default Content on Empty Footer",
 			"desc" => "Would you like to display a default content when the footer sidebars are empty?",
@@ -413,6 +419,7 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 									<li>Show Categories: <strong><?php if(get_option($shortname.'_show_categories') == "fp_only") { echo "Front Page Only"; } elseif (get_option($shortname.'_show_categories') == "post_only") { echo "Single Post/Page Only"; } else { echo ucwords(get_option($shortname.'_show_categories')); } ?></strong></li>
 									<li>Copyrigt Year: <strong><?php echo get_option($shortname.'_copy_year'); ?></strong></li>
 									<li>Admin Bar: <strong><?php if(get_option($shortname.'_user_login') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_user_login')); } ?></strong></li>
+									<li>Theme By Notice: <strong><?php if(get_option($shortname.'_thene_by') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_theme_by')); } ?></strong></li>
 							<?php } ?>
 							<?php if(stristr($_GET['page'],'tbf-homepage.php')) { ?>
 									<li>Number of Posts: <strong><?php echo get_option('posts_per_page'); ?></strong></li>
@@ -713,6 +720,16 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 					case "login":
 					?>
 					<div id="logindiv" class="stuffbox">
+						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
+						<div class="inside"><label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<p><small><?php echo $value['desc']; ?></small></p>
+						</div>
+					</div>
+					<?php break;
+	
+					case "theme-by":
+					?>
+					<div id="themebydiv" class="stuffbox">
 						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
 						<div class="inside"><label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
 						<p><small><?php echo $value['desc']; ?></small></p>
