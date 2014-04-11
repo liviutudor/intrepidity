@@ -51,29 +51,29 @@
 		
       <div id="footer" <?php echo (get_option('tbf1_footer_image_file')) ? 'style="background:url('.get_option('tbf1_footer_image_file'). ') no-repeat"' : ''?>>
 		<div class="footer-content">
-            <?php if ( !function_exists('dynamic_sidebar') || (!dynamic_sidebar("Footer Left") && get_option("tbf1_empty_sidebars") == "yes") ) : ?>
-        	<div class="footer-widget">
+            <div class="footer-widget">
                 <ul class="footerlinks">
+                    <?php if ( !function_exists('dynamic_sidebar') || (!dynamic_sidebar("Footer Left") && get_option("tbf1_empty_sidebars") == "yes") ) : ?>
                     <li><strong>Footer Left Content</strong><br />To replace this, go to "Widgets" page and add your own widgets to "Footer Left".<br /><br />Suggested widgets are: Categories, Recent Comments, Banners, Ads, Promotional Links etc.</li>
+                    <?php endif; ?> 
 				</ul>
             </div>
-            <?php endif; ?> 
 
-            <?php if ( !function_exists('dynamic_sidebar') || (!dynamic_sidebar("Footer Middle") && get_option("tbf1_empty_sidebars") == "yes") ) : ?>
         	<div class="footer-widget">
                 <ul class="footerlinks">
+                    <?php if ( !function_exists('dynamic_sidebar') || (!dynamic_sidebar("Footer Middle") && get_option("tbf1_empty_sidebars") == "yes") ) : ?>
                     <li><strong>Footer Middle Content</strong><br />To replace this, go to "Widgets" page and add your own widgets "Footer Middle".<br /><br />Suggested widgets are: Categories, Recent Comments, Banners, Ads, Promotional Links etc.</li>
+                    <?php endif; ?> 
 				</ul>
             </div>
-            <?php endif; ?> 
 
-            <?php if ( !function_exists('dynamic_sidebar') || (!dynamic_sidebar("Footer Right") && get_option("tbf1_empty_sidebars") == "yes") ) : ?>
         	<div class="footer-widget">
                 <ul class="footerlinks">
+                    <?php if ( !function_exists('dynamic_sidebar') || (!dynamic_sidebar("Footer Right") && get_option("tbf1_empty_sidebars") == "yes") ) : ?>
                     <li><strong>Footer Right Content</strong><br />To replace this, go to "Widgets" page and add your own widgets "Footer Right".<br /><br />Suggested widgets are: Categories, Recent Comments, Banners, Ads, Promotional Links etc.</li>
+                    <?php endif; ?> 
 				</ul>
             </div>
-            <?php endif; ?> 
        	  <div class="recover"></div>
           </div>
           
