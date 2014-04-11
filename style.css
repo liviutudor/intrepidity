@@ -192,9 +192,9 @@ http://www.opensource.org/licenses/gpl-license.php
 	
 	#socialize-icons {position: absolute; top: 50px; right: -2px; list-style:none }
 	
-	#socialize-icons a {display: block; height: 34px }
+	#socialize-icons a {display: block; height: 34px; }
 	
-	#socialize-icons li {float: right; overflow:hidden; text-indent: -33333px }
+	#socialize-icons li {float: right; overflow:hidden; text-indent: -33333px; padding: 2px; }
 	
 	#icon-twitter {background: url(images/socialize-icons.png) no-repeat 0 0; width: 51px }
 	
