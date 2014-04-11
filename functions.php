@@ -386,6 +386,7 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 									<li>Show Default Content on Empty Footer: <strong><?php if(get_option($shortname.'_empty_sidebars') == "yes") { echo "No"; } else { echo ucwords(get_option($shortname.'_empty_sidebars')); } ?></strong></li>
 									<li>Show Author: <strong><?php if(get_option($shortname.'_show_author') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_show_author')); } ?></strong></li>
 									<li>Show Tags: <strong><?php if(get_option($shortname.'_show_tags') == "fp_only") { echo "Front Page Only"; } elseif (get_option($shortname.'_show_tags') == "post_only") { echo "Single Post/Page Only"; } else { echo ucwords(get_option($shortname.'_show_tags')); } ?></strong></li>
+									<li>Copyrigt Year: <strong><?php echo get_option($shortname.'_copy_year'); ?></strong></li>
 									<li>Admin Bar: <strong><?php if(get_option($shortname.'_user_login') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_user_login')); } ?></strong></li>
 							<?php } ?>
 							<?php if(stristr($_GET['page'],'tbf-homepage.php')) { ?>
