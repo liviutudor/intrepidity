@@ -17,7 +17,7 @@
 				wp_link_pages();
 				?>
 
-				<?php the_tags( '<p class="tags">Tags: ', ', ', '</p>'); ?>
+				<?php if( (get_option("tbf1_show_tags") == "yes") || (get_option("tbf1_show_tags") == "post_only") ) { the_tags( '<p class="tags">Tags: ', ', ', '</p>');} ?>
 
 				<p class="postmetadata alt">
 					<small>
@@ -48,7 +48,7 @@
 			<p class="postmetacat"><?php _e('Posted in')?> <span class="categories"><?php the_category(' ') ?></span> 
 				<?php if( get_option("tbf1_show_author") == "yes" ) { _e('By'); ?> <span class="usr-meta"><?php the_author();?></span><?php } ?> 
 				<span class="comment-icon"><?php comments_popup_link('No Comments Yet', '1 Comment', '% Comments')?></span>
-				<?php if (isset($options['tags'])) : ?><span class="tags"><?php the_tags('', ', ', ''); ?></span><?php endif; ?></p>
+			</p>
 			</div>
 		</div>
 

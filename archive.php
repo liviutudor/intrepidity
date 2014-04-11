@@ -28,7 +28,11 @@
 					<?php the_excerpt(); ?>
 				</div>
 
-				<p class="meta"><span class="tag-icon"><?php the_tags('Tags: ', ', ', '<br />'); ?></span> <?php _e('Posted in')?> <span class="categories"><?php the_category(', ') ?></span> <span class="editpost"><?php edit_post_link('Edit', '', ' '); ?></span> <span class="comment-icon"><?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></span></p>
+				<p class="meta">
+					<?php if(get_option("tbf1_show_tags") == "yes") { ?>
+					<span class="tag-icon"><?php the_tags('Tags: ', ', ', '<br />'); ?></span> 
+					<?php } ?>
+					<?php _e('Posted in')?> <span class="categories"><?php the_category(', ') ?></span> <span class="editpost"><?php edit_post_link('Edit', '', ' '); ?></span> <span class="comment-icon"><?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?></span></p>
 
 			</div>
 

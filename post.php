@@ -19,7 +19,10 @@ $template_url = get_bloginfo('template_url');
 		wp_link_pages();
 		?>
         
-        <div class="postedinfo"><?php the_tags('<span class="tag-meta">Tags: ', ', ', '</span><br />'); ?> 
+        <div class="postedinfo">
+            <?php if(get_option("tbf1_show_tags") == "yes" || ((get_option("tbf1_show_tags")=="fp_only") && is_home()) ) { ?>
+                <span class="tag-icon"><?php the_tags('<span class="tag-meta">Tags: ', ', ', '</span><br />'); ?></span><br/> 
+            <?php } ?>
             <?php _e('Posted in')?> <span class="categories"><?php the_category(' ') ?></span> 
             <?php if( get_option("tbf1_show_author") == "yes" ) {
                 _e('by'); ?> <span class="usr-meta"><?php the_author() ?></span>

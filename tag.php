@@ -13,6 +13,9 @@
     <div class="meta">
 				<span class="tagmeta"><?php _e('Published on')?> <?php the_time(get_option('date_format')) ?> 
 					<?php if( get_option("tbf1_show_author") == "yes" ) { _e('By'); ?> <span class="usr-meta"><?php the_author();?></span><?php } ?>
+                    <?php if(get_option("tbf1_show_tags") == "yes") { ?>
+                        <br/><span class="tag-icon"><?php the_tags('Tags: ', ', ', '<br />'); ?></span>
+                    <?php } ?>
 				</span>
 			</div>
 	<?php the_excerpt(); ?>

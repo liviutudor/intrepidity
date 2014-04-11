@@ -10,6 +10,9 @@
             <h2><a href="<?php the_permalink() ?>" title="<?php _e('Click to read ')?><?php the_title(); ?>"><?php the_title(); ?></a></h2>
             <div class="meta">
                 <?php if( get_option("tbf1_show_author") == "yes" ) { _e('By'); ?> <span class="usr-meta"><?php the_author();?></span><?php } ?>
+                <?php if(get_option("tbf1_show_tags") == "yes") { ?>
+                    <br/><span class="tag-icon"><?php the_tags('Tags: ', ', ', '<br />'); ?></span>
+                <?php } ?>
             </div>
             <?php the_excerpt(); ?>
             </div>

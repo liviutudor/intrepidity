@@ -56,6 +56,12 @@ $options = array (
 			"default" => "yes",
             "type" => "show_author"),
 	
+	array(  "name" => "Show Tags",
+			"desc" => "Would you like to display the tags for each post?",
+            "id" => $shortname."_show_tags",
+			"default" => "yes",
+            "type" => "show_tags"),
+	
 	array(  "name" => "Socialize Icons",
 			"desc" => "Enter Links to Your Twitter, Facebook, and RSS feeds.<br />If you want to remove the icon, clear the field and save this page",
             "type" => "socialize_icons"),
@@ -377,8 +383,9 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 							<?php if(stristr($_GET['page'],'tbf-features.php')) { ?>
 									<li>Font Size: <strong><?php if(get_option($shortname.'_font_size') == "11px") { echo "11px"; } else { echo ucwords(get_option($shortname.'_font_size')); } ?></strong></li>
 									<li>Search Bar: <strong><?php if(get_option($shortname.'_logo_location') == "middle") { echo "No"; } else { echo ucwords(get_option($shortname.'_search_header')); } ?></strong></li>
-									<li>Show Default Content on Empty Footer: <strong><?php if(get_option($shortname.'_empty_sidebars') == "middle") { echo "No"; } else { echo ucwords(get_option($shortname.'_empty_sidebars')); } ?></strong></li>
-									<li>Show Author: <strong><?php if(get_option($shortname.'_show_author') == "middle") { echo "No"; } else { echo ucwords(get_option($shortname.'_show_author')); } ?></strong></li>
+									<li>Show Default Content on Empty Footer: <strong><?php if(get_option($shortname.'_empty_sidebars') == "yes") { echo "No"; } else { echo ucwords(get_option($shortname.'_empty_sidebars')); } ?></strong></li>
+									<li>Show Author: <strong><?php if(get_option($shortname.'_show_author') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_show_author')); } ?></strong></li>
+									<li>Show Tags: <strong><?php if(get_option($shortname.'_show_tags') == "fp_only") { echo "Front Page Only"; } elseif (get_option($shortname.'_show_tags') == "post_only") { echo "Single Post/Page Only"; } else { echo ucwords(get_option($shortname.'_show_tags')); } ?></strong></li>
 									<li>Admin Bar: <strong><?php if(get_option($shortname.'_user_login') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_user_login')); } ?></strong></li>
 							<?php } ?>
 							<?php if(stristr($_GET['page'],'tbf-homepage.php')) { ?>
@@ -662,6 +669,27 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 						<div class="inside">
 							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"
 										<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Yes</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"
+										<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<p><small><?php echo $value['desc']; ?></small></p>
+						</div>
+					</div>
+					<?php break;
+
+					case "show_tags":
+					?>
+					<div id="showtagsdiv" class="stuffbox">
+						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
+						<div class="inside">
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"
+										<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Always</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="fp_only"
+										<?php if(get_option($value['id']) == "fp_only") { echo " checked"; } ?> />&nbsp;Front Page Only</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="post_only"
+										<?php if(get_option($value['id']) == "post_only") { echo " checked"; } ?> />&nbsp;Single Post/Page Page Only</label>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"
 										<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
