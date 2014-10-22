@@ -26,6 +26,7 @@ foreach($skin_folders as $key=>$value) {
 </title>
 
 <meta name="author" content="<?php bloginfo('name'); ?>" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
