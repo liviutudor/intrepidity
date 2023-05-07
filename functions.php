@@ -19,18 +19,6 @@ $options = array (
             "id" => $shortname."_logo_header",
 			"default" => "no",
             "type" => "logo"),
-
-	array(  "name" => "Heading Style",
-			"desc" => "Change the style of the heading",
-            "type" => "heading_style"),
-	array(  "id" => $shortname."_h1_color",
-			"default" => ""),
-	array(  "id" => $shortname."_h1_font",
-			"default" => ""),
-	array(  "id" => $shortname."_h2_color",
-			"default" => ""),
-	array(  "id" => $shortname."_h2_font",
-			"default" => ""),
 			
 	array(  "name" => "Logo or Blog Name Location",
 			"desc" => "Where do you want your Logo or Blog Name located?",
@@ -55,36 +43,6 @@ $options = array (
             "id" => $shortname."_user_login",
 			"default" => "no",
             "type" => "login"),
-
-	array(  "name" => "Show 'Theme by...'",
-			"desc" => "Would you like to display a 'intrepidity Theme by Top Blog Formula' in the footer?",
-            "id" => $shortname."_theme_by",
-			"default" => "yes",
-            "type" => "theme-by"),
-	
-	array(  "name" => "Show Default Content on Empty Footer",
-			"desc" => "Would you like to display a default content when the footer sidebars are empty?",
-            "id" => $shortname."_empty_sidebars",
-			"default" => "yes",
-            "type" => "empty_sidebars"),
-	
-	array(  "name" => "Show Author",
-			"desc" => "Would you like to display the author for each post?",
-            "id" => $shortname."_show_author",
-			"default" => "yes",
-            "type" => "show_author"),
-	
-	array(  "name" => "Show Tags",
-			"desc" => "Would you like to display the tags for each post?",
-            "id" => $shortname."_show_tags",
-			"default" => "yes",
-            "type" => "show_tags"),
-	
-	array(  "name" => "Show Categories",
-			"desc" => "Would you like to display the categories for each post?",
-            "id" => $shortname."_show_categories",
-			"default" => "yes",
-            "type" => "show_categories"),
 	
 	array(  "name" => "Socialize Icons",
 			"desc" => "Enter Links to Your Twitter, Facebook, and RSS feeds.<br />If you want to remove the icon, clear the field and save this page",
@@ -95,8 +53,6 @@ $options = array (
 	array(  "id" => $shortname."_icon_facebook",
 			"default" => ""),
 	array(  "id" => $shortname."_icon_youtube",
-			"default" => ""),
-	array(  "id" => $shortname."_icon_linkedin",
 			"default" => ""),
 	array(  "id" => $shortname."_icon_rss",
 			"default" => ''),
@@ -365,10 +321,8 @@ function mytheme_admin() {
 #socializediv .form-table th {width:124px; padding: 0; line-height:22px }
 #socializediv .form-table {clear:inherit }
 #socializediv .form-table td {padding:0 10px } 
-#background_color, #<?php echo $shortname; ?>_h1_color, #<?php echo $shortname; ?>_h2_color {padding-left: 35px; background: url(<?php bloginfo('template_url'); ?>/images/admin/back-palette.png) no-repeat}
+#background_color {padding-left: 35px; background: url(<?php bloginfo('template_url'); ?>/images/admin/back-palette.png) no-repeat}
 </style>
-
-<div id="colorPickerDiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"> </div>
 
 <div class="wrap">
 <h2><?php echo $themename; ?> Settings
@@ -404,22 +358,12 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 							<?php if(stristr($_GET['page'],'tbf-design.php')) { ?>
 									<li>Skin Color: <strong><?php echo ucwords(get_option($shortname.'_skin_color')); ?></strong></li>
 									<li>Header Logo: <strong><?php echo ucwords(get_option($shortname.'_logo_header')); ?></strong></li>
-									<li>Heading Style - H1 Color: <strong><?php echo ucwords(get_option($shortname.'_h1_color')); ?></strong></li>
-									<li>Heading Style - H1 Font: <strong><?php echo ucwords(get_option($shortname.'_h1_font')); ?></strong></li>
-									<li>Heading Style - H2 Color: <strong><?php echo ucwords(get_option($shortname.'_h2_color')); ?></strong></li>
-									<li>Heading Style - H2 Font: <strong><?php echo ucwords(get_option($shortname.'_h2_font')); ?></strong></li>
 									<li><?php if (get_option($shortname.'_logo_header') == "yes") { echo "Logo"; } else { echo "Blog Name"; } ?> Location: <strong><?php echo ucwords(get_option($shortname.'_logo_location')); ?></strong></li>
 							<?php } ?>
 							<?php if(stristr($_GET['page'],'tbf-features.php')) { ?>
 									<li>Font Size: <strong><?php if(get_option($shortname.'_font_size') == "11px") { echo "11px"; } else { echo ucwords(get_option($shortname.'_font_size')); } ?></strong></li>
 									<li>Search Bar: <strong><?php if(get_option($shortname.'_logo_location') == "middle") { echo "No"; } else { echo ucwords(get_option($shortname.'_search_header')); } ?></strong></li>
-									<li>Show Default Content on Empty Footer: <strong><?php if(get_option($shortname.'_empty_sidebars') == "yes") { echo "No"; } else { echo ucwords(get_option($shortname.'_empty_sidebars')); } ?></strong></li>
-									<li>Show Author: <strong><?php if(get_option($shortname.'_show_author') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_show_author')); } ?></strong></li>
-									<li>Show Tags: <strong><?php if(get_option($shortname.'_show_tags') == "fp_only") { echo "Front Page Only"; } elseif (get_option($shortname.'_show_tags') == "post_only") { echo "Single Post/Page Only"; } else { echo ucwords(get_option($shortname.'_show_tags')); } ?></strong></li>
-									<li>Show Categories: <strong><?php if(get_option($shortname.'_show_categories') == "fp_only") { echo "Front Page Only"; } elseif (get_option($shortname.'_show_categories') == "post_only") { echo "Single Post/Page Only"; } else { echo ucwords(get_option($shortname.'_show_categories')); } ?></strong></li>
-									<li>Copyrigt Year: <strong><?php echo get_option($shortname.'_copy_year'); ?></strong></li>
 									<li>Admin Bar: <strong><?php if(get_option($shortname.'_user_login') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_user_login')); } ?></strong></li>
-									<li>Theme By Notice: <strong><?php if(get_option($shortname.'_thene_by') == "yes") { echo "Yes"; } else { echo ucwords(get_option($shortname.'_theme_by')); } ?></strong></li>
 							<?php } ?>
 							<?php if(stristr($_GET['page'],'tbf-homepage.php')) { ?>
 									<li>Number of Posts: <strong><?php echo get_option('posts_per_page'); ?></strong></li>
@@ -503,32 +447,6 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 					<?php
 					break;
 					
-					case "heading_style":
-						$heading_h1_color = get_option($shortname.'_h1_color');
-						$heading_h1_font = get_option($shortname.'_h1_font');
-						$heading_h2_color = get_option($shortname.'_h2_color');
-						$heading_h2_font = get_option($shortname.'_h2_font');
-					?>
-						<div id="heading_stylediv" class="stuffbox">
-						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
-						<div class="inside">
-							<label for="<?php echo $shortname?>_h1_color">H1 Color</label>
-							<input name="<?php echo $shortname?>_h1_color" id="<?php echo $shortname?>_h1_color" type="text" size="8" value="<?php echo htmlentities($heading_h1_color);?>"/>
-							<span id="<?php echo $shortname?>_h1_color-sample" style="background-color:<?php echo $heading_h1_color;?>;padding:0 10px;">&nbsp;</span><br/>
-							<label for="<?php echo $shortname?>_h1_font">H1 Font</label>
-							<input name="<?php echo $shortname?>_h1_font" id="<?php echo $shortname?>_h1_font" type="text" size="32" value="<?php echo htmlentities($heading_h1_font);?>"/>
-							<br/>
-
-							<label for="<?php echo $shortname?>_h2_color">H2 Color</label>
-							<input name="<?php echo $shortname?>_h2_color" id="<?php echo $shortname?>_h2_color" type="text" size="8" value="<?php echo htmlentities($heading_h2_color);?>"/>
-							<span id="<?php echo $shortname?>_h2_color-sample" style="background-color:<?php echo $heading_h2_color;?>;padding:0 10px;">&nbsp;</span><br/>
-							<label for="<?php echo $shortname?>_h2_font">H2 Font</label>
-							<input name="<?php echo $shortname?>_h2_font" id="<?php echo $shortname?>_h2_font" type="text" size="32" value="<?php echo htmlentities($heading_h2_font);?>"/>
-						</div>
-					</div>
-					<?php
-					break;
-
 					case "logo":
 					?>
 					<div id="logodiv" class="stuffbox">
@@ -602,9 +520,9 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 						<input type="radio" size="8" name="<?php echo $shortname;?>_background_repeat" <?php echo ($bgr == 'repeat'    ? 'checked="checked"' : '');?> value="repeat"    id="repeat" ><label for="repeat">Tile</label> &nbsp;
 						<input type="radio" size="8" name="<?php echo $shortname;?>_background_repeat" <?php echo ($bgr == 'no-repeat' ? 'checked="checked"' : '');?> value="no-repeat" id="no-repeat" ><label for="no-repeat">No Repeat</label>
 						<br>
-						Background Color: <input type="text" size="8" name="<?php echo $shortname;?>_background_color" id="background_color" value="<?php echo htmlentities($bgc = get_option($shortname.'_background_color'));?>"> <span id="background_color-sample" style="background-color:<?php echo $bgc;?>;padding:0 10px;">&nbsp;</span><br>
-<!-- 						<div id="colorPickerDiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"> </div>
- -->						
+						Background Color: <input type="text" size="8" name="<?php echo $shortname;?>_background_color" id="background_color" value="<?php echo htmlentities($bgc = get_option($shortname.'_background_color'));?>"> <span id="background-color-sample" style="background-color:<?php echo $bgc;?>;padding:0 10px;">&nbsp;</span><br>
+						<div id="colorPickerDiv" style="z-index: 100;background:#eee;border:1px solid #ccc;position:absolute;display:none;"> </div>
+						
 						<?php if ($imageURL):?>
 							<img src="<?php echo $imageURL;?>" style="max-height:50px;max-width:600px;min-width:20px" />
 						<?php endif;?>
@@ -646,39 +564,18 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 	<script type="text/javascript">
 	/* <![CDATA[ */
 	var farbtastic;
-	var color_div_id='';
 
 	jQuery(function($) {
 		$('#background_color').click(function() {
-			show_color_choice("#background_color");
+			$('#colorPickerDiv').show();
 		});
-		$('#<?php echo $shortname; ?>_h1_color').click(function() {
-			show_color_choice("#<?php echo $shortname; ?>_h1_color");
-		});
-		$('#<?php echo $shortname; ?>_h2_color').click(function() {
-			show_color_choice("#<?php echo $shortname; ?>_h2_color");
-		});
-
 		farbtastic = jQuery.farbtastic('#colorPickerDiv', function(color) { pickColor(color); });
-		color_div_id='#background-color';
 		pickColor('<?php echo $bgc ?>');
-		color_div_id='#<?php echo $shortname; ?>_h1_color';
-		pickColor('<?php echo $heading_h1_color ?>');
-		color_div_id='#<?php echo $shortname; ?>_h2_color';
-		pickColor('<?php echo $heading_h2_color ?>');
-		color_div_id="";
+		
 	});
-
-	function show_color_choice(srcDiv) {
-		color_div_id = srcDiv;
-		var pos = jQuery(srcDiv).offset();
-		jQuery('#colorPickerDiv').css('left', parseInt(pos.left) + 'px');
-		jQuery('#colorPickerDiv').css('top', parseInt(pos.top) + 'px');
-		jQuery('#colorPickerDiv').show();
-	}
 	function pickColor(color) {
-		jQuery(color_div_id + '-sample').css('background-color', color);
-		jQuery(color_div_id).val(color);
+		jQuery('#background-color-sample').css('background-color', color);
+		jQuery('#background_color').val(color);
 		farbtastic.setColor(color);
 	}
 	jQuery(document).mousedown(function() {
@@ -727,88 +624,6 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
 					</div>
 					<?php break;
 	
-					case "theme-by":
-					?>
-					<div id="themebydiv" class="stuffbox">
-						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
-						<div class="inside"><label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
-						<p><small><?php echo $value['desc']; ?></small></p>
-						</div>
-					</div>
-					<?php break;
-	
-					case "empty_sidebars":
-					?>
-					<div id="emptysidebarsdiv" class="stuffbox">
-						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
-						<div class="inside">
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"
-										<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Yes</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"
-										<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
-						<p><small><?php echo $value['desc']; ?></small></p>
-						</div>
-					</div>
-					<?php break;
-
-					case "show_author":
-					?>
-					<div id="showauthordiv" class="stuffbox">
-						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
-						<div class="inside">
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"
-										<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Yes</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"
-										<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
-						<p><small><?php echo $value['desc']; ?></small></p>
-						</div>
-					</div>
-					<?php break;
-
-					case "show_tags":
-					?>
-					<div id="showtagsdiv" class="stuffbox">
-						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
-						<div class="inside">
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"
-										<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Always</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="fp_only"
-										<?php if(get_option($value['id']) == "fp_only") { echo " checked"; } ?> />&nbsp;Front Page Only</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="post_only"
-										<?php if(get_option($value['id']) == "post_only") { echo " checked"; } ?> />&nbsp;Single Post/Page Page Only</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"
-										<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
-						<p><small><?php echo $value['desc']; ?></small></p>
-						</div>
-					</div>
-					<?php break;
-
-					case "show_categories":
-					?>
-					<div id="showcategoriesdiv" class="stuffbox">
-						<h3><label for="link_url"><?php echo $value['name']; ?></label></h3>
-						<div class="inside">
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="yes"
-										<?php if(get_option($value['id']) == "yes") { echo " checked"; } ?> />&nbsp;Always</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="fp_only"
-										<?php if(get_option($value['id']) == "fp_only") { echo " checked"; } ?> />&nbsp;Front Page Only</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="post_only"
-										<?php if(get_option($value['id']) == "post_only") { echo " checked"; } ?> />&nbsp;Single Post/Page Page Only</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<label><input name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="radio" value="no"
-										<?php if(get_option($value['id']) == "no") { echo " checked"; } ?> />&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
-						<p><small><?php echo $value['desc']; ?></small></p>
-						</div>
-					</div>
-					<?php break;
-
 					case "socialize_icons":
 					?>
 					<div id="socializediv" class="stuffbox">
@@ -827,10 +642,6 @@ if (isset($_REQUEST['saved'])) echo '<div id="message" class="updated fade"><p><
                                     <tr valign="top">
 										<th scope="row"><label for="<?php echo $shortname?>_icon_youtube">YouTube URL:</label></th>
 										<td><input id="<?php echo $shortname?>_icon_youtube" class="regular-text" type="text" value="<?php echo get_option($shortname.'_icon_youtube'); ?>" name="<?php echo $shortname?>_icon_youtube"/><br /><span class="description">Eg. http://www.youtube.com/user/xxxxxx </span></td>
-									</tr>
-                                    <tr valign="top">
-										<th scope="row"><label for="<?php echo $shortname?>_icon_linkedin">LinkedIn URL:</label></th>
-										<td><input id="<?php echo $shortname?>_icon_linkedin" class="regular-text" type="text" value="<?php echo get_option($shortname.'_icon_linkedin'); ?>" name="<?php echo $shortname?>_icon_linkedin"/><br /><span class="description">Eg. http://www.linkedin.com/in/xxxxxx </span></td>
 									</tr>
 									<tr valign="top">
 										<th scope="row"><label for="<?php echo $shortname?>_icon_rss">RSS feed URL:</label></th>
@@ -1125,8 +936,10 @@ function tbf1_comment($comment, $args, $depth) {
 <?php
 }
 
-add_action('admin_print_styles', create_function('', "wp_enqueue_script('farbtastic');wp_enqueue_style('farbtastic');"));
-add_action('admin_print_styles', create_function('', "wp_enqueue_script('thickbox');wp_enqueue_style('thickbox');")); 
+//add_action('admin_print_styles', create_function('', "wp_enqueue_script('farbtastic');wp_enqueue_style('farbtastic');"));
+add_action('admin_print_styles', function(){wp_enqueue_script('farbtastic');wp_enqueue_style('farbtastic');});
+//add_action('admin_print_styles', create_function('', "wp_enqueue_script('thickbox');wp_enqueue_style('thickbox');"));
+add_action('admin_print_styles', function(){wp_enqueue_script('thickbox');wp_enqueue_style('thickbox');});
 
 //Resize the dimention of youtube videos so that they fit within the left column
 function resize_youtube( $content ) {
